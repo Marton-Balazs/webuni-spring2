@@ -39,6 +39,14 @@ private Employee employee = new Employee();
         private double fiveyears;
         private double twoandhalfyears;
 
+        public double getPercent() {
+            return percent;
+        }
+
+        public void setPercent(double percent) {
+            this.percent = percent;
+        }
+
         public double getHighPercent() {
             return highPercent;
         }
@@ -61,14 +69,6 @@ private Employee employee = new Employee();
 
         public void setLowPercent(double lowPercent) {
             this.lowPercent = lowPercent;
-        }
-
-        public double getPercent() {
-            return percent;
-        }
-
-        public void setPercent(double percent) {
-            this.percent = percent;
         }
 
         public double getTeenyears() {

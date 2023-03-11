@@ -12,6 +12,8 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class SmartEmployeeService implements EmployeeService {
 
+    private static final int DAYS = 365;
+
     @Autowired
     HrConfigProperties config;
 
@@ -39,23 +41,23 @@ public class SmartEmployeeService implements EmployeeService {
     public int getPayRaisePercent(Employee employee) {
         LocalDateTime startDate = employee.getStartDate();
         LocalDateTime now = LocalDateTime.now();
-        //count by days and as far as I know ChronoUnit counts the leap years
+
         long diff = ChronoUnit.DAYS.between(startDate, now);
         System.out.println("days at the company: " + diff);
 
-//          first part of the homework
+//        first part of the homework:
 //        if (diff >= teenyears) {return highPercent;}
 //        if (diff >= fiveyears && diff < teenyears) {return goodPercent;}
 //        if (diff >= twoandhalfyears && diff < fiveyears) {return lowPercent;}
 //        else {return percent;}
 
-        if (diff >= config.getEmployee().getSmart().getTeenyears()) {
+        if (diff >= config.getEmployee().getSmart().getTeenyears() * DAYS) {
             return (int) config.getEmployee().getSmart().getHighPercent();
         }
-        if (diff >= config.getEmployee().getSmart().getFiveyears() && diff < config.getEmployee().getSmart().getTeenyears()) {
+        if (diff >= config.getEmployee().getSmart().getFiveyears() * DAYS) {
             return (int) config.getEmployee().getSmart().getGoodPercent();
         }
-        if (diff >= config.getEmployee().getSmart().getTwoandhalfyears() && diff < config.getEmployee().getSmart().getFiveyears()) {
+        if (diff >= config.getEmployee().getSmart().getTwoandhalfyears() * DAYS) {
             return (int) config.getEmployee().getSmart().getLowPercent();
         }
         else {
