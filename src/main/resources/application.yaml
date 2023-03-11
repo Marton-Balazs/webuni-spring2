@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: prod
+
+hr:
+  employee:
+    smart:
+      highPercent: 10
+      goodPercent: 5
+      lowPercent: 2
+      percent: 0
+
+      teenyears: 3652.5
+      fiveyears: 1826.25
+      twoandhalfyears: 913.13
