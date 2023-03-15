@@ -68,12 +68,12 @@ public class SmartEmployeeService implements EmployeeService {
 
         TreeMap<Double, Integer> years = config.getEmployee().getSmart().getYears();
 
-        Map.Entry<Double, Integer> floorEntry = years.floorEntry((double) diff);
-        if (floorEntry == null) {
+        Map.Entry<Double, Integer> map = years.floorEntry((double) diff);
+        if (map == null) {
             return 0;
         }
         else {
-            return floorEntry.getValue();
+            return map.getValue();
         }
     }
 }
