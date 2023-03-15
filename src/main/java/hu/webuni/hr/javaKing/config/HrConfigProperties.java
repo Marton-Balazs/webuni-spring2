@@ -4,6 +4,8 @@ import hu.webuni.hr.javaKing.model.Employee;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.TreeMap;
+
 @ConfigurationProperties(prefix = "hr")
 @Component
 public class HrConfigProperties {
@@ -38,6 +40,16 @@ private Employee employee = new Employee();
         private double teenyears;
         private double fiveyears;
         private double twoandhalfyears;
+
+        private TreeMap<Double, Integer> years;
+
+        public TreeMap<Double, Integer> getYears() {
+            return years;
+        }
+
+        public void setYears(TreeMap<Double, Integer> years) {
+            this.years = years;
+        }
 
         public double getPercent() {
             return percent;

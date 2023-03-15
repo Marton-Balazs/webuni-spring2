@@ -13,3 +13,11 @@ hr:
       teenyears: 10
       fiveyears: 5
       twoandhalfyears: 2.5
+
+      years:
+        1: 1
+        2: 2
+        3: 3
+        5: 7
+        10: 15
+        15: 20

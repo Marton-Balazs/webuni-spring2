@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service
 public class SmartEmployeeService implements EmployeeService {
@@ -42,8 +44,8 @@ public class SmartEmployeeService implements EmployeeService {
         LocalDateTime startDate = employee.getStartDate();
         LocalDateTime now = LocalDateTime.now();
 
-        long diff = ChronoUnit.DAYS.between(startDate, now);
-        System.out.println("days at the company: " + diff);
+        long diff = ChronoUnit.DAYS.between(startDate, now)  / DAYS;
+        System.out.println("years at the company: " + diff);
 
 //        first part of the homework:
 //        if (diff >= teenyears) {return highPercent;}
@@ -51,17 +53,27 @@ public class SmartEmployeeService implements EmployeeService {
 //        if (diff >= twoandhalfyears && diff < fiveyears) {return lowPercent;}
 //        else {return percent;}
 
-        if (diff >= config.getEmployee().getSmart().getTeenyears() * DAYS) {
-            return (int) config.getEmployee().getSmart().getHighPercent();
-        }
-        if (diff >= config.getEmployee().getSmart().getFiveyears() * DAYS) {
-            return (int) config.getEmployee().getSmart().getGoodPercent();
-        }
-        if (diff >= config.getEmployee().getSmart().getTwoandhalfyears() * DAYS) {
-            return (int) config.getEmployee().getSmart().getLowPercent();
+//        if (diff >= config.getEmployee().getSmart().getTeenyears() * DAYS) {
+//            return (int) config.getEmployee().getSmart().getHighPercent();
+//        }
+//        if (diff >= config.getEmployee().getSmart().getFiveyears() * DAYS) {
+//            return (int) config.getEmployee().getSmart().getGoodPercent();
+//        }
+//        if (diff >= config.getEmployee().getSmart().getTwoandhalfyears() * DAYS) {
+//            return (int) config.getEmployee().getSmart().getLowPercent();
+//        }
+//        else {
+//            return (int) config.getEmployee().getSmart().getPercent();
+//        }
+
+        TreeMap<Double, Integer> years = config.getEmployee().getSmart().getYears();
+
+        Map.Entry<Double, Integer> floorEntry = years.floorEntry((double) diff);
+        if (floorEntry == null) {
+            return 0;
         }
         else {
-            return (int) config.getEmployee().getSmart().getPercent();
+            return floorEntry.getValue();
         }
     }
 }
