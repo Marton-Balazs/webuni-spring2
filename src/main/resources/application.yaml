@@ -1,6 +1,16 @@
+server:
+  port: 8083
+
 spring:
   profiles:
     active: prod
+
+  thymeleaf:
+    cache: false
+
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
 
 hr:
   employee:

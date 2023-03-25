@@ -1,5 +1,7 @@
 spring.mvc.format.date-time=yyyy-MM-dd HH:mm:ss
 spring.profiles.active=prod
+spring.thymeleaf.cache=false
+server.port=8083
 
 hr.employee.smart.highPercent=10
 hr.employee.smart.goodPercent=5
