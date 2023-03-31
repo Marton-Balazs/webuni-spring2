@@ -2,7 +2,6 @@ package hu.webuni.hr.javaKing.web;
 
 import hu.webuni.hr.javaKing.dto.EmployeeDTO;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +31,9 @@ public class EmployeeController {
         employees.put(2L, new EmployeeDTO(2, "Kata", "TestAutomationEngineer", 80, LocalDateTime.of(2022, Month.JUNE, 17, 9,00)));
     }
 
+    public Map<Long, EmployeeDTO> getEmployees () {
+        return getEmployees();
+    }
 
     @GetMapping
     public List<EmployeeDTO> getAll() {
@@ -76,4 +78,5 @@ public class EmployeeController {
                 .filter(e -> e.getSalary() > minSalary)
                 .collect(Collectors.toList());
     }
+
 }

@@ -44,4 +44,27 @@ public class EmployeeTLController {
         return "redirect:employees";
     }
 
+    @GetMapping("/employees/{id}")
+    public String employeeEdit(Map<String, Object> model, @PathVariable long id) {
+        Employee employee = allEmployees.stream().filter(e -> id == e.getId()).findFirst().orElse(null);
+        model.put("Employee", employee);
+        return "employeeDetails";
+    }
+
+    @PostMapping("/employees/{id}")
+    public String editEmployee(Employee employee) {
+        Employee oldEmployee = allEmployees.stream().filter(e -> employee.getId() == e.getId()).findFirst().orElse(null);
+        allEmployees.set(allEmployees.indexOf(oldEmployee), employee);
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/employees/{id}/delete")
+    public String deleteEmployee(@PathVariable long id) {
+        Employee employee = allEmployees.stream()
+                .filter(e -> id == e.getId())
+                .findFirst().orElse(null);
+        allEmployees.remove(employee);
+        return "redirect:/employees";
+    }
+
 }

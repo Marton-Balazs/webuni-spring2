@@ -12,10 +12,11 @@
 <table>
     <tr th:each="employee : ${employees}">
         <td th:text="${employee.id}"></td>
-        <td th:text="${employee.name}"></td>
+        <td><a th:href="@{/employees/{id}(id = ${employee.id})}" th:text="${employee.name}"></a></td>
         <td th:text="${employee.position}"></td>
         <td th:text="${employee.salary}"></td>
         <td th:text="${employee.startDate}"></td>
+        <td><a th:href="@{/employees/{id}/delete(id = ${employee.id})}">Delete</a></td>
     </tr>
 </table>
 
@@ -48,6 +49,7 @@
             <th><input type="submit" value="Add" /> </th>
         </tr>
     </table>
+
 </form>
 
 </body>
